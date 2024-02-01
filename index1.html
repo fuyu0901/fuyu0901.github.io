@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAIN's Website</title>
+    <style>
+        body { 
+            margin: 0;
+            display: flex; 
+            flex-direction: column;
+        }
+        #content {
+            order: 1; /* 动态内容先显示 */
+        }
+        #spacer {
+            order: 2; /* 然后是空白区域 */
+            height: 2000px; /* 用于产生滚动的高度 */
+            background-color: black;
+        }
+        canvas { 
+            display: block; 
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <script type="module" src="/main.js"></script>
+    </div>
+    <div id="spacer"></div>
+</body>
+</html>
