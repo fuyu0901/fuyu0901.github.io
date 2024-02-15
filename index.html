@@ -3,28 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
     <title>RAIN's Website</title>
     <style>
         body { 
             margin: 0;
             display: flex; 
             flex-direction: column;
+            color: white;
+            background: black;
+            font-family: 'Mulish', sans-serif; /* 应用 Mulish 字体 */
+            font-weight: 200; /* 使用 300 字重的 Mulish Light 字体 */
+            font-style: normal;
         }
-        #content {
-            order: 1; /* 动态内容先显示 */
+        #header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
         }
-        #spacer {
-            order: 2; /* 然后是空白区域 */
-            height: 2000px; /* 用于产生滚动的高度 */
-            background-color: black;
+        #navbar {
+            display: flex;
+            justify-content: flex-end;
         }
-        canvas { 
-            display: block; 
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 20px;
+            transition: color 0.3s;
         }
+        .nav-link:hover {
+            color: #aaa;
+        }
+        #main-title {
+            font-size: 36px;
+            margin-left: 20px; /* Adjust this value to suit your design */
+        }
+        /* Your other CSS styles */
     </style>
 </head>
 <body>
+    <div id="header">
+        <div id="main-title">
+            Hi! My Name is Rain, I'm a UI/UX Designer!
+        </div>
+        <div id="navbar">
+            <a href="#my-works" class="nav-link">My Works</a>
+            <a href="#resume" class="nav-link">Resume</a>
+            <a href="#about-me" class="nav-link">About Me</a>
+            <a href="#contact-me" class="nav-link">Contact Me</a>
+        </div>
+    </div>
     <div id="content">
+        <!-- 你的3D效果的Canvas元素将在这里 -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
         <script type="module" src="main.js"></script>
     </div>
