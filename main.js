@@ -17,6 +17,7 @@ animate();
 function init() {
     // Set up the scene
     scene = new THREE.Scene();
+    let letteYPosition=-1;
 
     // Camera setup
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -28,10 +29,10 @@ function init() {
     document.body.appendChild(renderer.domElement);
 
     // Define base positions for each letter
-    let baseR = new THREE.Vector3(-6, -2, 0);
-    let baseA = new THREE.Vector3(-2, -2, 0);
-    let baseI = new THREE.Vector3(2, -2, 0);
-    let baseN = new THREE.Vector3(6, -2, 0);
+    let baseR = new THREE.Vector3(-6, letteYPosition, 0);
+    let baseA = new THREE.Vector3(-2, letteYPosition, 0);
+    let baseI = new THREE.Vector3(2, letteYPosition, 0);
+    let baseN = new THREE.Vector3(6, letteYPosition, 0);
     let material = new THREE.MeshBasicMaterial( {
 
         color: 0xe0e0ff,
