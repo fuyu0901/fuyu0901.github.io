@@ -11,7 +11,7 @@ let animationDuration = 2000; // in milliseconds
 let transitionStart = performance.now();
 let raycaster = new THREE.Raycaster();
 let mouse = new THREE.Vector2();
-var canvas,canvasRect;
+var  canvasY;
 let rain;
 
 init();
@@ -20,9 +20,8 @@ animate();
 function init() {
     
     // Set up the scene
-    canvas = document.getElementById('canvas');
-    canvasRect = canvas.getBoundingClientRect();
-    var canvasY = canvasRect.top;
+
+    canvasY = document.getElementById('canvas').getBoundingClientRect().top;
     scene = new THREE.Scene();
     let letteYPosition= -1;
 
@@ -90,7 +89,6 @@ function onWindowResize() {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
-    canvasRect = canvas.getBoundingClientRect();
 }
 function toggleShapes() {
     
@@ -113,7 +111,7 @@ function toggleShapes() {
 function onMouseMove(event) {
     // 将鼠标位置转换为标准化设备坐标 (NDC)
     mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-    mouse.y = - ((event.clientY - canvasRect.top+window.pageYOffset)/ window.innerHeight) * 2 + 1;
+    mouse.y = - ((event.clientY - canvasY + window.pageYOffset)/ window.innerHeight) * 2 + 1;
 }
 
 function mouseInteraction() {
