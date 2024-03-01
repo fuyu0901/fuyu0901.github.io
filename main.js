@@ -22,6 +22,7 @@ function init() {
     // Set up the scene
     canvas = document.getElementById('canvas');
     canvasRect = canvas.getBoundingClientRect();
+    var canvasY = canvasRect.top;
     scene = new THREE.Scene();
     let letteYPosition= -1;
 
