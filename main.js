@@ -75,7 +75,7 @@ function animate() {
     
     cubeMeshes.forEach(cube => {
         // Rotate each cube
-        cube.rotation.y += 0.001;
+        cube.rotation.y += 0.002;
     });
 
 
