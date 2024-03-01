@@ -3,6 +3,7 @@ let scene, camera, renderer;
 let isCube = true;
 let isScrolling = false; 
 let lastScrollTop = 0;
+let cubeZ = 0;
 const cubeSize = 1;
 const spacing = 1.2;
 let cubeMeshes = [];
@@ -10,15 +11,21 @@ let animationDuration = 2000; // in milliseconds
 let transitionStart = performance.now();
 let raycaster = new THREE.Raycaster();
 let mouse = new THREE.Vector2();
+var canvas,canvasRect;
+let rain;
 
 init();
 animate();
 
 function init() {
+    
     // Set up the scene
+    canvas = document.getElementById('canvas');
+    canvasRect = canvas.getBoundingClientRect();
     scene = new THREE.Scene();
-    let letteYPosition=-1;
+    let letteYPosition= -1;
 
+    rain = new RAIN(scene,spacing,cubeMeshes);
     // Camera setup
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     camera.position.z = 10;
@@ -42,10 +49,10 @@ function init() {
     let geometry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
 
     // Create letters with their respective base positions
-    createLetterR(baseR,geometry,material);
-    createLetterA(baseA,geometry,material);
-    createLetterI(baseI,geometry,material);
-    createLetterN(baseN,geometry,material);
+    rain.createLetterR(baseR,geometry,material);
+    rain.createLetterA(baseA,geometry,material);
+    rain.createLetterI(baseI,geometry,material);
+    rain.createLetterN(baseN,geometry,material);
 
     // Lighting
     const ambientLight = new THREE.AmbientLight(0x404040);
@@ -58,117 +65,6 @@ function init() {
     window.addEventListener('mousemove', onMouseMove, false);
     window.addEventListener('scroll', onScroll, false);
 }
-
-function createLetterR(basePosition,geometry,material) {
-
-
-    // Vertical part of R
-    for (let i = 0; i < 5; i++) {
-        let cube = new THREE.Mesh(geometry, material);
-        cube.position.set(basePosition.x - spacing*2, basePosition.y + i * spacing, basePosition.z + 0);
-        cube.originalPosition = new THREE.Vector3(cube.position.x, cube.position.y, cube.position.z);
-        scene.add(cube);
-        cubeMeshes.push(cube);
-    }
-
-    // Top part of R
-    for (let i = 1; i < 3; i++) {
-        let cube = new THREE.Mesh(geometry, material);
-        cube.position.set(basePosition.x + i * spacing- spacing*2, basePosition.y + 4 * spacing, basePosition.z + 0);
-        cube.originalPosition = new THREE.Vector3(cube.position.x, cube.position.y, cube.position.z);
-        scene.add(cube);
-        cubeMeshes.push(cube);
-    }
-
-    // Middle part of R
-    for (let i = 0; i < 2; i++) {
-        let cube = new THREE.Mesh(geometry, material);
-        cube.position.set(basePosition.x , basePosition.y + (i+2) * spacing, basePosition.z + 0);
-        cube.originalPosition = new THREE.Vector3(cube.position.x, cube.position.y, cube.position.z);
-        scene.add(cube);
-        cubeMeshes.push(cube);
-    }
-
-    // Diagonal part of R
-    for (let i = 0; i < 2; i++) {
-        let cube = new THREE.Mesh(geometry, material);
-        cube.position.set(basePosition.x + (i - 1) * spacing, basePosition.y + (1 - i) * spacing, basePosition.z + 0);
-        cube.originalPosition = new THREE.Vector3(cube.position.x, cube.position.y, cube.position.z);
-        scene.add(cube);
-        cubeMeshes.push(cube);
-    }
-}
-// ... [Previous code remains the same]
-
-function createLetterA(basePosition,geometry,material) {
-
-    // Left diagonal part of A
-    for (let i = 0; i < 5; i++) {
-        let cube = new THREE.Mesh(geometry, material);
-        cube.position.set(basePosition.x + (-spacing*1.5 + i * spacing / 3), basePosition.y + i * spacing, basePosition.z);
-        cube.originalPosition = new THREE.Vector3(cube.position.x, cube.position.y, cube.position.z);
-        scene.add(cube);
-        cubeMeshes.push(cube);
-    }
-
-    // Right diagonal part of A
-    for (let i = 0; i < 5; i++) {
-        let cube = new THREE.Mesh(geometry, material);
-        cube.position.set(basePosition.x + (spacing*1.5 - i * spacing / 3), basePosition.y + i * spacing, basePosition.z);
-        cube.originalPosition = new THREE.Vector3(cube.position.x, cube.position.y, cube.position.z);
-        scene.add(cube);
-        cubeMeshes.push(cube);
-    }
-
-    // Middle part of A
-    let middleCube = new THREE.Mesh(geometry, material);
-    middleCube.position.set(basePosition.x, basePosition.y + spacing, basePosition.z);
-    middleCube.originalPosition = new THREE.Vector3(middleCube.position.x, middleCube.position.y, middleCube.position.z);
-    scene.add(middleCube);
-    cubeMeshes.push(middleCube);
-}
-
-function createLetterI(basePosition,geometry,material) {
-    // Vertical part of I
-    for (let i = 0; i < 5; i++) {
-        let cube = new THREE.Mesh(geometry, material);
-        cube.position.set(basePosition.x, basePosition.y + i * spacing, basePosition.z);
-        cube.originalPosition = new THREE.Vector3(cube.position.x, cube.position.y, cube.position.z);
-        scene.add(cube);
-        cubeMeshes.push(cube);
-    }
-}
-
-function createLetterN(basePosition,geometry,material) {
-    // Left vertical part of N
-    for (let i = 0; i < 5; i++) {
-        let cube = new THREE.Mesh(geometry, material);
-        cube.position.set(basePosition.x, basePosition.y + i * spacing, basePosition.z);
-        cube.originalPosition = new THREE.Vector3(cube.position.x, cube.position.y, cube.position.z);
-        scene.add(cube);
-        cubeMeshes.push(cube);
-    }
-
-    // Right vertical part of N
-    for (let i = 0; i < 5; i++) {
-        let cube = new THREE.Mesh(geometry, material);
-        cube.position.set(basePosition.x + 2 * spacing, basePosition.y + i * spacing, basePosition.z);
-        cube.originalPosition = new THREE.Vector3(cube.position.x, cube.position.y, cube.position.z);
-        scene.add(cube);
-        cubeMeshes.push(cube);
-    }
-
-    // Diagonal part of N
-    for (let i = 0; i < 5; i++) {
-        let cube = new THREE.Mesh(geometry, material);
-        cube.position.set(basePosition.x + i * spacing / 2, basePosition.y + i * spacing, basePosition.z);
-        cube.originalPosition = new THREE.Vector3(cube.position.x, cube.position.y, cube.position.z);
-        scene.add(cube);
-        cubeMeshes.push(cube);
-    }
-}
-
-
 
 function animate() {
     requestAnimationFrame(animate);
@@ -193,6 +89,7 @@ function onWindowResize() {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
+    canvasRect = canvas.getBoundingClientRect();
 }
 function toggleShapes() {
     
@@ -215,12 +112,13 @@ function toggleShapes() {
 function onMouseMove(event) {
     // 将鼠标位置转换为标准化设备坐标 (NDC)
     mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-    mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
+    mouse.y = - ((event.clientY - canvasRect.top+window.pageYOffset)/ window.innerHeight) * 2 + 1;
 }
 
 function mouseInteraction() {
     // 更新射线与鼠标位置
     raycaster.setFromCamera(mouse, camera);
+    
 
     // 计算物体和射线的交点
     let intersects = raycaster.intersectObjects(cubeMeshes);
@@ -243,7 +141,7 @@ function mouseInteraction() {
     }
 }
 
-// Now i can't detect scroll event!!!!!!
+// Now detect scroll event
 function onScroll(event) {
     isScrolling = true; 
     let currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
