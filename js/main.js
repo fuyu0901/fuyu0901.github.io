@@ -1,7 +1,7 @@
 let scene, camera, renderer;
 let isCube = true;
 let isScrolling = false; 
-let allsize = 17000;
+let allsize = 18000;
 let lastScrollTop = 0;
 let scrollRatio = 0;
 let cubeZ = 0;
@@ -25,7 +25,7 @@ function init() {
     // Set up the scene
     canvasY = document.getElementById('canvas').getBoundingClientRect().top;
     scene = new THREE.Scene();
-    let letteYPosition = -4.5;
+    let letteYPosition = -4.8;
 
     rain = new RAIN(scene, spacing, cubeMeshes);
 
