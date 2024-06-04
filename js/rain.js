@@ -9,6 +9,7 @@ class RAIN {
         let cube = new THREE.Mesh(geometry, material);
         cube.position.set(basePosition.x + offset.x, basePosition.y + offset.y, basePosition.z + offset.z);
         cube.originalPosition = new THREE.Vector3(cube.position.x, cube.position.y, cube.position.z);
+        cube.originalPosition2 = new THREE.Vector3(cube.position.x, cube.position.y, cube.position.z);
         this.scene.add(cube);
         this.cubeMeshes.push(cube);
     }

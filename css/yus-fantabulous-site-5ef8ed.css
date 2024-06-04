@@ -521,7 +521,7 @@ img {
 
 .title-20 {
   color: #fff;
-  margin-top: 0;
+  margin-top: 0px;
   margin-bottom: 0;
   font-family: Mulish, sans-serif;
   font-size: 4vw;
@@ -549,7 +549,7 @@ img {
   justify-content: flex-start;
   align-items: flex-start;
   width: 100%;
-  padding: 28px 120px 78px 80px;
+  padding: 24px 500px 78px 80px;
   text-decoration: none;
   display: flex;
   position: absolute;
@@ -814,11 +814,11 @@ img {
     height: 300px;
   }
 
-  .project-14, .hi, .threejs, .showcases {
+  .project-14,  .showcases {
     padding-left: 60px;
     padding-right: 60px;
   }
-
+  
   .case {
     grid-column-gap: 10px;
     grid-row-gap: 10px;
@@ -830,7 +830,9 @@ img {
   .menutexts {
     grid-column-gap: 25px;
   }
-
+  .hi {
+    padding-right: 80px;
+  }
   .part {
     padding-left: 40px;
     padding-right: 40px;
@@ -854,19 +856,22 @@ img {
   }
 
   .title-20 {
-    font-size: 8vw;
+    margin-top: 40px;
+    font-size: 6vw;
   }
 
-  .hi, .threejs, .showcases, .case {
+  .showcases, .case {
     padding-left: 40px;
     padding-right: 40px;
   }
 }
+  
 
-@media screen and (max-width: 479px) {
+@media screen and (max-width: 520px) {
   .menutexts {
     grid-column-gap: 20px;
   }
+  
 
   .text-47, .text-56 {
     font-size: 12px;
@@ -905,10 +910,11 @@ img {
   }
 
   .title-20 {
-    font-size: 8vw;
+    margin-top: 20px;
+    font-size: 7vw;
   }
 
-  .hi, .threejs, .showcases {
+  .showcases {
     padding-left: 20px;
     padding-right: 20px;
   }

@@ -7,11 +7,13 @@ let scrollRatio = 0;
 let cubeZ = 0;
 let cubeSize = 1;
 const spacing = 1.2;
+let letteYPosition = -3;
 let cubeMeshes = [];
 let animationDuration = 2000; // in milliseconds
 let transitionStart = performance.now();
 let raycaster = new THREE.Raycaster();
 let mouse = new THREE.Vector2();
+let centerY =0;
 var canvasY;
 let rain;
 let enableRaycast = true;
@@ -25,7 +27,6 @@ function init() {
     // Set up the scene
     canvasY = document.getElementById('canvas').getBoundingClientRect().top;
     scene = new THREE.Scene();
-    let letteYPosition = -4.8;
 
     rain = new RAIN(scene, spacing, cubeMeshes);
 
@@ -91,7 +92,7 @@ function init() {
             camera.position.z + offsetZ  // Z position just outside the view
         );
     });
-
+    adjustCubePositions();
     cubeMeshes.forEach(cube => {
         gsap.killTweensOf(cube.position);
         gsap.killTweensOf(cube.scale);
@@ -123,11 +124,12 @@ function animate() {
 window.addEventListener('resize', onWindowResize, false);
 
 function onWindowResize() {
+
     camera.aspect = window.innerWidth  / (window.innerHeight+108);
     camera.updateProjectionMatrix();
     camera.position.z = allsize / window.innerWidth;
     renderer.setSize(window.innerWidth, window.innerHeight+108);
-   
+    adjustCubePositions();
 }
 
 function toggleShapes() {
@@ -269,7 +271,7 @@ function onAboutMeHover() {
         gsap.to(cube.position, {
             duration: 0.6,
             x: 0,
-            y: -1.5, 
+            y: -centerY, 
             z: 0,
             ease: "power1.inOut"
         });
@@ -367,3 +369,29 @@ function introAnimation() {
         });
     }
 }
+
+
+function adjustCubePositions() {
+    let x = window.innerHeight;
+    const distanceTop = 468;
+    const distanceBottom = 80;
+
+    // 计算窗口中点Y值（屏幕坐标）
+    const windowCenterY = x / 2;
+
+    // 计算3D空间中对应的Y值
+    const topY = (distanceTop - windowCenterY) * (camera.position.z / x);
+    const bottomY = (x - distanceBottom - windowCenterY) * (camera.position.z / x);
+    // 计算中心点的Y值
+    centerY = (topY + bottomY) / 2;
+
+    cubeMeshes.forEach(cube => {
+        // Adjust the Y position of each cube based on the new center Y point
+        const originalY = cube.originalPosition2.y;
+        cube.position.y = originalY-centerY;
+
+        // Update original positions to the new ones
+        cube.originalPosition.y = cube.position.y;
+    });
+}
+
