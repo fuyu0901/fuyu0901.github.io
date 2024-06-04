@@ -30,12 +30,12 @@ function init() {
     rain = new RAIN(scene, spacing, cubeMeshes);
 
     // Camera setup
-    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2000);
+    camera = new THREE.PerspectiveCamera(75, window.innerWidth /( window.innerHeight+108), 0.1, 2000);
     camera.position.z = allsize / window.innerWidth;
 
     // Renderer setup
     renderer = new THREE.WebGLRenderer();
-    renderer.setSize(window.innerWidth , window.innerHeight);
+    renderer.setSize(window.innerWidth , window.innerHeight+108);
     renderer.setPixelRatio(window.devicePixelRatio);
 
     // Append renderer to the #canvas div instead of the body
@@ -122,10 +122,10 @@ function animate() {
 window.addEventListener('resize', onWindowResize, false);
 
 function onWindowResize() {
-    camera.aspect = window.innerWidth  / window.innerHeight;
+    camera.aspect = window.innerWidth  / (window.innerHeight+108);
     camera.updateProjectionMatrix();
     camera.position.z = allsize / window.innerWidth;
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(window.innerWidth, window.innerHeight+108);
    
 }
 
