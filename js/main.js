@@ -23,7 +23,7 @@ animate();
 
 function init() {
     // Set up the scene
-    canvasY = document.getElementById('canvas').getBoundingClientRect().top;
+    canvasY = document.getElementById('canvas').getBoundingClientRect().top+108;
     scene = new THREE.Scene();
     let letteYPosition = -4.8;
 
@@ -102,7 +102,8 @@ function init() {
             z: cube.originalPosition.z,
             ease: "power3.inOut"
         });
-    });    
+    }); 
+    introAnimation();   
 }
 
 function animate() {
@@ -339,3 +340,30 @@ function onContactMeLeave() {
     });
 }
 
+function introAnimation() {
+    // 选择自我介绍的元素
+    const introText = document.querySelector('.hi .title-20');
+    // 确保元素存在
+    if (introText) {
+        // 拆分文本成多行
+        const lines = introText.innerHTML.split('<br>');
+        introText.innerHTML = '';
+        
+        lines.forEach((line, index) => {
+            const span = document.createElement('span');
+            span.innerHTML = line;
+            span.style.display = 'block';
+            span.style.opacity = 0;
+            introText.appendChild(span);
+            
+            // 使用 GSAP 动画
+            gsap.to(span, {
+                duration: 1.5,
+                opacity: 1,
+                x: 0,
+                delay: index * 0.5,
+                ease: "power3.out"
+            });
+        });
+    }
+}

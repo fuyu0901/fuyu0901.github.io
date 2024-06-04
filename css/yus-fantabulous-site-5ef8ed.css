@@ -524,7 +524,7 @@ img {
   margin-top: 0;
   margin-bottom: 0;
   font-family: Mulish, sans-serif;
-  font-size: 68px;
+  font-size: 4vw;
   font-weight: 200;
   line-height: 150%;
   text-decoration: none;
@@ -854,7 +854,7 @@ img {
   }
 
   .title-20 {
-    font-size: 48px;
+    font-size: 8vw;
   }
 
   .hi, .threejs, .showcases, .case {
@@ -905,7 +905,7 @@ img {
   }
 
   .title-20 {
-    font-size: 28px;
+    font-size: 8vw;
   }
 
   .hi, .threejs, .showcases {
