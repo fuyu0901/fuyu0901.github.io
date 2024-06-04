@@ -25,7 +25,7 @@ function init() {
     // Set up the scene
     canvasY = document.getElementById('canvas').getBoundingClientRect().top;
     scene = new THREE.Scene();
-    let letteYPosition = -4.5;
+    let letteYPosition = -4;
 
     rain = new RAIN(scene, spacing, cubeMeshes);
 
