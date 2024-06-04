@@ -23,7 +23,7 @@ animate();
 
 function init() {
     // Set up the scene
-    canvasY = document.getElementById('canvas').getBoundingClientRect().top+108;
+    canvasY = document.getElementById('canvas').getBoundingClientRect().top;
     scene = new THREE.Scene();
     let letteYPosition = -4.8;
 
@@ -149,7 +149,7 @@ function toggleShapes() {
 function onMouseMove(event) {
     // 将鼠标位置转换为标准化设备坐标 (NDC)
     mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-    mouse.y = -((event.clientY - canvasY + window.pageYOffset) / window.innerHeight) * 2 + 1;
+    mouse.y = -((event.clientY - canvasY + window.pageYOffset-108) / window.innerHeight+108) * 2 + 1;
 }
 
 function mouseInteraction() {
