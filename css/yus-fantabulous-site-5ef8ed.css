@@ -897,12 +897,12 @@ img {
     padding-right: 20px;
   }
   .corner-top-left {
-    top: 340px;
+    top: 320px;
     left: 26px; /* 左边距 */
   }
   
   .corner-top-right {
-    top: 340px;
+    top: 320px;
     right: 26px; /* 右边距 */
   }
   
