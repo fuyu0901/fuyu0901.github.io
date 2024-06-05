@@ -897,10 +897,12 @@ img {
     padding-right: 20px;
   }
   .corner-top-left {
+    top: 340px;
     left: 26px; /* 左边距 */
   }
   
   .corner-top-right {
+    top: 340px;
     right: 26px; /* 右边距 */
   }
   
@@ -917,7 +919,7 @@ img {
     line-height: 18px;
   }
   .title-20 {
-    margin-top: 40px;
+    margin-top: 50px;
     font-size: 7vw;
   }
   .bigpicture {
