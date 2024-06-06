@@ -890,7 +890,7 @@ img {
 
 @media screen and (max-width: 520px) {
   .headcontainer {
-    perspective: 0px;
+    perspective: none;
   }
   .menutexts {
     grid-column-gap: 20px;
