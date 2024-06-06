@@ -1430,6 +1430,9 @@ img {
   #w-node-_9b811ccf-b6ff-25f4-71e5-1304d866584a-7c151d4c, #w-node-_4d6a6475-40a6-d0d2-c2e3-c0992f429f11-7c151d4c, #w-node-_4d6a6475-40a6-d0d2-c2e3-c0992f429f16-7c151d4c, #w-node-_14064a98-12ff-2e36-ab41-c54fb5e3d503-7c151d4c, #w-node-_14064a98-12ff-2e36-ab41-c54fb5e3d508-7c151d4c, #w-node-_13a0f2f3-3106-20eb-ea72-058d157d31ee-7c151d4c {
     grid-area: span 1 / span 3 / span 1 / span 3;
   }
+  #w-node-bef697b5-b0ae-413f-3de5-bf76a3eb6a23-7c151d4c, #w-node-f0a9158b-d62a-d623-9dd8-3ced5466e09f-7c151d4c{
+    grid-area: span 1 / span 3 / span 1 / span 3;
+  }
 }
 
 
